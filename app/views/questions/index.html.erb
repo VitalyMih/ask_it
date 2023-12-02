@@ -1,0 +1,8 @@
+<h1>Questions:</h1>
+<% @questions.each_with_index do |question, index| %>
+  <h3><%= "#{index + 1}. #{question.title}" %></h3>
+  <span><%= question.body %></span>
+  <div>
+    <span><%= question.format_created_at %></span>
+  </div>
+<% end %>
