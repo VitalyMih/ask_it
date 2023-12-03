@@ -3,6 +3,10 @@ class QuestionsController < ApplicationController
     @questions = Question.all
   end
 
+  def show
+    question_by_id
+  end
+
   def new
     @question = Question.new
   end
@@ -17,22 +21,19 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = Question.find_by(id: params[:id])
+    question_by_id
   end
 
   def update
-    @question = Question.find_by(id: params[:id])
-    if @question.update(question_params)
+    if question_by_id.update(question_params)
       redirect_to questions_path
     else
-      redirect_to edit_question_path(@question)
+      redirect_to edit_question_path(question_by_id)
     end
   end
 
   def destroy
-    @question = Question.find_by(id: params[:id])
-
-    @question.destroy
+    question_by_id.destroy
     redirect_to questions_path
   end
 
@@ -40,5 +41,9 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:title, :body)
+  end
+
+  def question_by_id
+    @question = Question.find_by(id: params[:id])
   end
 end
