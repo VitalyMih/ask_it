@@ -16,6 +16,19 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def edit
+    @question = Question.find_by(id: params[:id])
+  end
+
+  def update
+    @question = Question.find_by(id: params[:id])
+    if @question.update(question_params)
+      redirect_to questions_path
+    else
+      redirect_to edit_question_path(@question)
+    end
+  end
+
   private
 
   def question_params

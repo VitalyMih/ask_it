@@ -5,4 +5,7 @@
   <div>
     <span><%= question.format_created_at %></span>
   </div>
+  <div>
+    <%= link_to 'Edit', edit_question_path(question) %>
+  </div>
 <% end %>
