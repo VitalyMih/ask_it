@@ -5,4 +5,9 @@
   <div>
     <span><%= question.format_created_at %></span>
   </div>
+  <div>
+    <%= link_to 'Show', question_path(question) %> |
+    <%= link_to 'Edit', edit_question_path(question) %> |
+    <%= link_to 'Delete', question_path(question), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+  </div>
 <% end %>
